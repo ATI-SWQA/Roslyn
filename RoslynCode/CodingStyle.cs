@@ -23,7 +23,7 @@ namespace Roslyn
         }
     }
 
-    public class CodingStyle : WriteNamingRuleReport
+    public class CodingStyle : WriteRuleReport
     {
         string[] csFilesList;
         string projectPath;
@@ -76,7 +76,7 @@ namespace Roslyn
                 if (leftIdentifier != null && Variables.Contains(leftIdentifier.Identifier.Text) || rightIdentifier != null && Variables.Contains(rightIdentifier.Identifier.Text))
                 {
                     int lineNum = binaryExpression.GetLocation().GetLineSpan().StartLinePosition.Line + 1;
-                    noneCodingStlye.Add(WriteNamingRuleReport.WriteStringConcatenationIssue(csFile, lineNum));
+                    noneCodingStlye.Add(WriteRuleReport.WriteStringConcatenationIssue(csFile, lineNum));
                 }
             }
         }

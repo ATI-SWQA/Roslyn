@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Roslyn
 {
-    public class WriteNamingRuleReport
+    public class WriteRuleReport
     {
         static public string WriteNonePascalClass(string className, string csFile, int lineNum)
         {
@@ -123,6 +123,19 @@ namespace Roslyn
                         $"Project name: {Path.GetFileNameWithoutExtension(csFile)}{Environment.NewLine}";
 
             return unusedMember;
+        }
+
+        static public string WriteMethodLengthLimit(string methodName, string className, string csFile, int lineNum)
+        {
+
+            string noneLimitRule = $"Method Length Limit (Method){Environment.NewLine}" +
+                                $"Method name: {methodName}{Environment.NewLine}" +
+                                $"Line number: {lineNum}{Environment.NewLine}" +
+                                $"Class name: {className}{Environment.NewLine}" +
+                                $"File name: {csFile}{Environment.NewLine}" +
+                                $"Project name: {Path.GetFileNameWithoutExtension(csFile)}{Environment.NewLine}";
+
+            return noneLimitRule;
         }
     }
 }

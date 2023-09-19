@@ -23,16 +23,20 @@ class Program
         var csFilesList = changedFiles.Split(';');
         csFilesList = csFilesList.Skip(1).ToArray(); ;
 
+        LimitRule limitRule = new LimitRule(csFilesList, projectPath);
         NamingRule namingRule = new NamingRule(csFilesList, projectPath);
         CodingStyle codingStyle = new CodingStyle(csFilesList, projectPath);
         WrongCode wrongCode = new WrongCode(csFilesList, projectPath);
+        List<string> limitMethodLength = limitRule.AnalyzeLimitRule();
         List<string> ruleViolation = namingRule.AnalyzeNamingRule();
         List<string> codingStyleViolation = codingStyle.AnalyzeCodingStyle();
         List<string> wrongCodeResult = wrongCode.AnalyzeWrongCode();
 
+        
         ruleViolation.AddRange(codingStyleViolation);
         ruleViolation.AddRange(wrongCodeResult);
-        WriteResult(ruleViolation, reportFilePath);
+        limitMethodLength.AddRange(ruleViolation);
+        WriteResult(limitMethodLength, reportFilePath);
     }
 
     static void WriteResult(List<string> reportList, string reportFilePath)

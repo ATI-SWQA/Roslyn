@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Roslyn
 {
-    class WrongCode : WriteNamingRuleReport
+    class WrongCode : WriteRuleReport
     {
         string[] csFilesList;
         string projectPath;
